@@ -1,0 +1,6 @@
+@TechManagementRepository_HostAddress = http://localhost:5227
+
+GET {{TechManagementRepository_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
