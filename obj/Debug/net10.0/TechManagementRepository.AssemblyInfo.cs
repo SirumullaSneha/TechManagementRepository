@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TechManagementRepository")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da119df46f02c4b99a5373eb81c6e526c0d1b47f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88c42fc790f4e3fac29cf82222c94cf08a0b17c4")]
 [assembly: System.Reflection.AssemblyProductAttribute("TechManagementRepository")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TechManagementRepository")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,6 +15,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IBankRepository, BankRepository>();
+builder.Services.AddScoped<IPersonalRepository, PersonalRepository>();
 
 var app = builder.Build();
 

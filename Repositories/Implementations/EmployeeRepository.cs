@@ -11,7 +11,7 @@ public class EmployeeRepository : IEmployeeRepository
 
     public async Task<Employee> AddAsync(Employee employee)
     {
-        _context.Employees.Add(employee);
+        await _context.Employees.AddAsync(employee);
         await _context.SaveChangesAsync();
         return employee;
     }
@@ -21,28 +21,30 @@ public class EmployeeRepository : IEmployeeRepository
         return await _context.Employees.ToListAsync();
     }
 
-    public async Task<Employee> GetByFields(int id, string name, string contact)
+    public async Task<Employee?> GetByFields(int id, string name, string contact)
     {
+        // Find by any provided field (id, name or contact). Returns first match or null.
         return await _context.Employees
-            .FirstOrDefaultAsync(e => e.Id == id || e.Name == name || e.Contact == contact);
+            .FirstOrDefaultAsync(e => (id > 0 && e.Id == id) || (!string.IsNullOrEmpty(name) && e.Name == name) || (!string.IsNullOrEmpty(contact) && e.Contact == contact));
     }
 
-    public Task<Employee> NoActiveAsync(int id)
+    public async Task<Employee?> NoActiveAsync(int id)
     {
-        var emp = _context.Employees.Find(id);
-        if (emp != null){
+        var emp = await _context.Employees.FindAsync(id);
+        if (emp != null)
+        {
             _context.Employees.Remove(emp);
-            _context.SaveChanges();
-            return Task.FromResult(emp);
+            await _context.SaveChangesAsync();
+            return emp;
         }
-        else{
-            return Task.FromResult<Employee>(null);        }
+        return null;
     }
 
-    public Task<Employee> UpdateAsync(Employee employee)
+    public async Task<Employee?> UpdateAsync(Employee employee)
     {
+        // Ensure EF tracks the entity correctly
         _context.Employees.Update(employee);
-        _context.SaveChanges();
-        return Task.FromResult(employee);
+        await _context.SaveChangesAsync();
+        return employee;
     }
 }
